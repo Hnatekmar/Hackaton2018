@@ -19,15 +19,14 @@ class Router extends Controller {
     }
   }
 
-
-  get("/test/") {
+  get("/testReq/") {
     (request: Request) => {
-      val test = new Test()
-      Map(
-        "response" -> test.test()
-      )
+      println(request)
+      println(request.toString())
     }
   }
+
+
 
   options("/:*") {
     _: Request => response.ok
