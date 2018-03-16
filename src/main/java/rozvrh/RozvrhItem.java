@@ -40,4 +40,15 @@ public class RozvrhItem {
     public String getRoom() {
         return room;
     }
+
+    @Override
+    public String toString() {
+        return "RozvrhItem{" +
+                "course='" + course + '\'' +
+                ", time='" + time + '\'' +
+                ", teacher='" + teacher + '\'' +
+                ", faculty='" + faculty + '\'' +
+                ", room='" + room + '\'' +
+                '}';
+    }
 }
