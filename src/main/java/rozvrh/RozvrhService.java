@@ -6,7 +6,7 @@ import java.util.List;
 public class RozvrhService {
 
 
-    RozvrhItem getNextCourse(){
+    public static RozvrhItem getNextCourse(){
 
         return new RozvrhItem(
                 "PUR",
@@ -17,8 +17,7 @@ public class RozvrhService {
 
     }
 
-    List<RozvrhItem> getWeekCourses(){
-
+    public static List<RozvrhItem> getWeekCourses(){
 
         List<RozvrhItem> rozvrh = new ArrayList<>();
 
@@ -38,9 +37,15 @@ public class RozvrhService {
                 "Q01"));
 
         return rozvrh;
-
     }
 
+    public static String getScreenshot(){
+        return "http://18.195.19.118/rozvrh.png";
+    }
+
+    public static String getFile(){
+        return "http://18.195.19.118/rozvrh.pdf";
+    }
 
 
 

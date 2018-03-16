@@ -1,6 +1,7 @@
 import com.twitter.finagle.http.Request
 import com.twitter.finatra.http.Controller
 import jidlo.JidloService
+import rozvrh.RozvrhService
 class Router extends Controller {
   get("/repeater/:data") {
     (request: Request) => {
@@ -28,6 +29,8 @@ class Router extends Controller {
     }
   }
 
+  // ---------- Rozvrh ---------------------
+
   get("/jidlo/") {
     (request: Request) => {
       Map(
@@ -35,6 +38,43 @@ class Router extends Controller {
       )
     }
   }
+
+
+  // ---------- Rozvrh ---------------------
+
+  // MOCK
+  get("/rozvrh/next") {
+    (request: Request) => {
+      Map(
+        "response" -> RozvrhService.getNextCourse
+      )
+    }
+  }
+  // MOCK
+  get("/rozvrh/week") {
+    (request: Request) => {
+      Map(
+        "response" -> RozvrhService.getWeekCourses
+      )
+    }
+  }
+  // MOCK
+  get("/rozvrh/screenshot") {
+    (request: Request) => {
+      Map(
+        "response" -> RozvrhService.getScreenshot
+      )
+    }
+  }
+  // MOCK
+  get("/rozvrh/file") {
+    (request: Request) => {
+      Map(
+        "response" -> RozvrhService.getScreenshot
+      )
+    }
+  }
+
 
 
 
