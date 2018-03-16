@@ -2,6 +2,7 @@ import com.twitter.finagle.http.Request
 import com.twitter.finatra.http.Controller
 import jidlo.JidloService
 import rozvrh.RozvrhService
+import study.StudyService
 class Router extends Controller {
   get("/repeater/:data") {
     (request: Request) => {
@@ -13,7 +14,15 @@ class Router extends Controller {
     }
   }
 
-  get("/canteenNames/") {
+  get("/mezera") {
+    (request: Request) => {
+      Map(
+        "response" -> "ahoj \\u000A \n <br> \n\r \n  \u000A  <br> neco"
+      )
+    }
+  }
+
+  get("/canteenNames") {
     (request: Request) => {
       Map(
         "names" -> Menza.getCanteenNames
@@ -27,16 +36,20 @@ class Router extends Controller {
   get("/jidlo/") {
     (request: Request) => {
       Map(
-        "response" -> JidloService.getJidlo()
+        "response" -> Menza.dishes
       )
     }
   }
+
+
 
 
   // ---------- Rozvrh ---------------------
 
   // MOCK
   get("/rozvrh/next") {
+
+    println("call /rozvrh/next")
     (request: Request) => {
       Map(
         "response" -> RozvrhService.getNextCourse
@@ -45,6 +58,7 @@ class Router extends Controller {
   }
   // MOCK
   get("/rozvrh/week") {
+    println("call /rozvrh/week")
     (request: Request) => {
       Map(
         "response" -> RozvrhService.getWeekCourses
@@ -53,6 +67,7 @@ class Router extends Controller {
   }
   // MOCK
   get("/rozvrh/screenshot") {
+    println("call /rozvrh/screenshot")
     (request: Request) => {
       Map(
         "response" -> RozvrhService.getScreenshot
@@ -79,9 +94,11 @@ class Router extends Controller {
 
   // REAL
   get("/rozvrh/all/byRoom/:data") {
+
     (request: Request) => {
 
       val data = request.getParam("data").toString
+      println("call /rozvrh/byRoom/"+data)
 
       println(data)
 
@@ -97,6 +114,7 @@ class Router extends Controller {
     (request: Request) => {
 
       val data = request.getParam("data").toString
+      println("call /rozvrh/byTeacher/"+data)
 
       println(data)
 
@@ -107,6 +125,38 @@ class Router extends Controller {
   }
 
 
+
+  // ---------- Studijni zalezitosti ---------------------
+
+  // REAL
+  get("/study/isic") {
+    (request: Request) => {
+      Map(
+        "response" -> StudyService.getIsic()
+      )
+    };
+  }
+
+  // ---------- Studijni zalezitosti ---------------------
+
+  // REAL
+  get("/study/studijni") {
+    (request: Request) => {
+      Map(
+        "response" -> StudyService.getStudijni
+      )
+    };
+  }
+
+
+  // REAL
+  get("/study/odevzdavarna") {
+    (request: Request) => {
+      Map(
+        "response" -> StudyService.getOdevzdavarny
+      )
+    };
+  }
 
 
   options("/:*") {
