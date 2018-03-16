@@ -9,8 +9,9 @@ public class JidloDay {
     List<JidloItem> food;
 
 
-    public JidloDay(String dayName) {
+    public JidloDay(String dayName, List<JidloItem> food) {
         this.dayName = dayName;
+        this.food = food;
     }
 
 
