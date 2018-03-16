@@ -21,7 +21,8 @@ class Router extends Controller {
 
   get("/testReq/") {
     (request: Request) => {
-      println(request)
+      println(request.getParams())
+      println(request.params)
       println(request.toString())
     }
   }
