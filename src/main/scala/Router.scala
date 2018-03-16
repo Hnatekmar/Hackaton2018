@@ -34,7 +34,7 @@ class Router extends Controller {
   get("/jidlo/") {
     (request: Request) => {
       Map(
-        "response" -> JidloService.getJidlo()
+        "response" -> Menza.dishes
       )
     }
   }
