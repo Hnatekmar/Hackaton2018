@@ -19,10 +19,17 @@ class Router extends Controller {
     }
   }
 
-  get("/testReq/") {
+  get("/testReq/:data") {
     (request: Request) => {
-      println(request)
+      println(request.params)
+      println(request.getParamNames())
+      println(request.content)
       println(request.toString())
+      val data = request.getParam("data").toString
+      println(data)
+      Map(
+        "response" -> data
+      )
     }
   }
 
