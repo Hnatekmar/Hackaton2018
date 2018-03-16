@@ -29,7 +29,7 @@ class Router extends Controller {
     }
   }
 
-  // ---------- Rozvrh ---------------------
+  // ---------- Menza ---------------------
 
   get("/jidlo/") {
     (request: Request) => {
@@ -70,9 +70,47 @@ class Router extends Controller {
   get("/rozvrh/file") {
     (request: Request) => {
       Map(
-        "response" -> RozvrhService.getScreenshot
+        "response" -> RozvrhService.getFile
       )
-    }
+    };
+  }
+
+  // REAL
+  get("/rozvrh/all") {
+    (request: Request) => {
+      Map(
+        "response" -> RozvrhService.getAllCourses("data1.csv")
+      )
+    };
+  }
+
+  // REAL
+  get("/rozvrh/all/byRoom/:data") {
+    (request: Request) => {
+
+      val data = request.getParam("data").toString
+
+      println(data)
+
+      Map(
+        "response" -> RozvrhService.filterAllCoursesRoom(data)
+      )
+    };
+  }
+
+  // REAL
+  get("/rozvrh/all/byTeacher/:data") {
+
+    (request: Request) => {
+
+      val data = request.getParam("data").toString
+
+      println(data)
+
+      Map(
+        "response" -> RozvrhService.filterAllCoursesTeacher(data)
+      )
+    };
   }
 
 
