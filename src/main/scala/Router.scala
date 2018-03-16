@@ -1,5 +1,6 @@
 import com.twitter.finagle.http.Request
 import com.twitter.finatra.http.Controller
+import jidlo.JidloService
 class Router extends Controller {
   get("/repeater/:data") {
     (request: Request) => {
@@ -24,6 +25,14 @@ class Router extends Controller {
       println(request.getParams())
       println(request.params)
       println(request.toString())
+    }
+  }
+
+  get("/jidlo/") {
+    (request: Request) => {
+      Map(
+        "response" -> JidloService.getJidlo()
+      )
     }
   }
 
