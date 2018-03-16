@@ -11,6 +11,15 @@ class Router extends Controller {
     }
   }
 
+  get("/canteenNames/") {
+    (request: Request) => {
+      Map(
+        "names" -> Menza.getCanteenNames
+      )
+    }
+  }
+
+
   get("/test/") {
     (request: Request) => {
       val test = new Test()
